@@ -32,7 +32,7 @@ TSP::~TSP()
 void TSP::generatePath(const Floyd& floyd)
 {
 	// cost 记录机器人从当前房间位置及房间访问状态"进入下一房间及状态所需要的成本(cost)
-	std::vector<std::vector<double>> cost(_totalRoomNumber, std::vector<double>((1 << _totalRoomNumber), 0));
+	std::vector<std::vector<float>> cost(_totalRoomNumber, std::vector<float>((1 << _totalRoomNumber), 0));
 
 	// PathTo 记录遍历所有房间（顶点）的最短访问顺序
 	std::vector<std::vector<unsigned int>> pathTo(_totalRoomNumber, std::vector<unsigned int>((1 << _totalRoomNumber), -1));
@@ -80,8 +80,8 @@ void TSP::generatePath(const Floyd& floyd)
 
 
 // 递归求解最短路径, 即求解从当前机器人位置及房间访问状态，到终点（所有房间被全部访问）的最小成本及路径
-double TSP::tspRecursive(unsigned int robotPosition, unsigned int& roomVisitedState,
-	std::vector<std::vector<double>>& cost,
+float TSP::tspRecursive(unsigned int robotPosition, unsigned int& roomVisitedState,
+	std::vector<std::vector<float>>& cost,
 	std::vector<std::vector<unsigned int>>& pathTo,
 	const Floyd& floyd)
 {
@@ -96,7 +96,7 @@ double TSP::tspRecursive(unsigned int robotPosition, unsigned int& roomVisitedSt
 	}
 
 	// minCost表示从当前机器人位置及房间访问状态，到终点（所有房间被全部访问）的最小成本
-	double minCost = DBL_MAX;
+	float minCost = DBL_MAX;
 	int nextRoomToVisit = -1;
 	// 机器人的下一个访问位置可以是任一房间（顶点)
 	for (int nextRoomIndex = 0; nextRoomIndex < _totalRoomNumber; nextRoomIndex++) {
@@ -107,7 +107,7 @@ double TSP::tspRecursive(unsigned int robotPosition, unsigned int& roomVisitedSt
 
 		// nextVisitedState表示当下一个房间被访问后，房间被访问过的新状态
 		unsigned int nextVisitedState = roomVisitedState | (1 << nextRoomIndex);
-		double newCost = floyd.distTo()[robotPosition][nextRoomIndex] + tspRecursive(nextRoomIndex, nextVisitedState, cost, pathTo, floyd);
+		float newCost = floyd.distTo()[robotPosition][nextRoomIndex] + tspRecursive(nextRoomIndex, nextVisitedState, cost, pathTo, floyd);
 
 		//当访问某一个房间(顶点)的总成本小于其他选择的时候，将该房间设定为机器人访问的下一位置
 		if (newCost < minCost) {
@@ -129,5 +129,5 @@ void TSP::printPath()
 		std::cout << n + 1 << "-->";
 	}
 
-	std::cout << " Path cost: " << _minPathCost << std::endl;
+	std::cout << "\nPath cost: " << _minPathCost << std::endl;
 }

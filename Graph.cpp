@@ -20,14 +20,14 @@ Graph::Graph()
 	}
 
 	//创建邻接矩阵并赋初值
-	_adjMatrix.assign(_vexNum, std::vector<double>(_vexNum, UINT_MAX));
+	_adjMatrix.assign(_vexNum, std::vector<float>(_vexNum, UINT_MAX));
 
 	// 输入边的信息(起点、终点以及权重)，并判断每次输入的值是否合法
 	std::cout << "请输入每条边的起点和终点（顶点编号从1开始）以及其权重" << std::endl;
 	for (size_t count = 0; count < _edgeNum; ++count) {
 		size_t start;
 		size_t end;
-		double weight;
+		float weight;
 		std::cin >> start >> end >> weight;
 
 		while (!this->checkEdgeValue(start, end, weight)) {
@@ -77,7 +77,7 @@ bool Graph::checkVexnum(size_t vexNum, size_t edgeNum)
 }
 
 // 判断每次输入的的边的信息是否合法
-bool Graph::checkEdgeValue(size_t start, size_t end, double weight) {
+bool Graph::checkEdgeValue(size_t start, size_t end, float weight) {
 	if (start < 1 || end < 1 || start > _vexNum || end > _vexNum) {
 		return false;
 	}

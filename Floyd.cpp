@@ -29,7 +29,7 @@ void Floyd::generatePath(const Graph& graph)
 	for (size_t bridge = 0; bridge < _vexNum; ++bridge) {
 		for (size_t row = 0; row < _vexNum; ++row) {
 			for (size_t col = 0; col < _vexNum; ++col) {
-				double new_distTo = (_distTo[row][bridge] == UINT_MAX || _distTo[bridge][col] == UINT_MAX) ? UINT_MAX : (_distTo[row][bridge] + _distTo[bridge][col]);
+				float new_distTo = (_distTo[row][bridge] == UINT_MAX || _distTo[bridge][col] == UINT_MAX) ? UINT_MAX : (_distTo[row][bridge] + _distTo[bridge][col]);
 				if (_distTo[row][col] > new_distTo) {
 					_distTo[row][col] = new_distTo;
 					_pathTo[row][col] = _pathTo[row][bridge];

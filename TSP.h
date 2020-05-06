@@ -10,7 +10,7 @@ private:
 	size_t _totalRoomNumber; // 顶点的总数
 	unsigned int _startNode;   //起始顶点
 	unsigned int _allRoomVisited;  //结束时，所有房间（顶点）被访问过的状态
-	double _minPathCost;  //最短路径cost
+	float _minPathCost;  //最短路径cost
 	std::vector<unsigned int> _path;  //最短路径
 
 public:
@@ -24,8 +24,8 @@ public:
 	void generatePath(const Floyd& floyd);
 
 	// 递归求解最短路径
-	double tspRecursive(unsigned int robotPosition, unsigned int& roomVisitedState,
-		std::vector<std::vector<double>>& cost,
+	float tspRecursive(unsigned int robotPosition, unsigned int& roomVisitedState,
+		std::vector<std::vector<float>>& cost,
 		std::vector<std::vector<unsigned int>>& pathTo,
 		const Floyd& floyd);
 
