@@ -3,6 +3,7 @@
 #include"Graph.h"
 #include"Floyd.h"
 #include <bitset>
+#include <deque>
 
 class TSP
 {
@@ -11,7 +12,7 @@ private:
 	unsigned int _startNode;   //起始顶点
 	unsigned int _allRoomVisited;  //结束时，所有房间（顶点）被访问过的状态
 	float _minPathCost;  //最短路径cost
-	std::vector<unsigned int> _path;  //最短路径
+	std::deque<unsigned int> _path;  //最短路径
 
 public:
 	// 构造函数
@@ -25,8 +26,8 @@ public:
 
 	// 递归求解最短路径
 	float tspRecursive(unsigned int robotPosition, unsigned int& roomVisitedState,
-		std::vector<std::vector<float>>& cost,
-		std::vector<std::vector<unsigned int>>& pathTo,
+		std::deque<std::deque<float>>& cost,
+		std::deque<std::deque<unsigned int>>& pathTo,
 		const Floyd& floyd);
 
 	// 打印遍历所有顶点的最短路径信息

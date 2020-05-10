@@ -27,6 +27,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="linkregion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graph.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Floyd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="linkregion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -32,10 +32,10 @@ TSP::~TSP()
 void TSP::generatePath(const Floyd& floyd)
 {
 	// cost 记录机器人从当前房间位置及房间访问状态"进入下一房间及状态所需要的成本(cost)
-	std::vector<std::vector<float>> cost(_totalRoomNumber, std::vector<float>((1 << _totalRoomNumber), 0));
+	std::deque<std::deque<float>> cost(_totalRoomNumber, std::deque<float>((1 << _totalRoomNumber), 0));
 
 	// PathTo 记录遍历所有房间（顶点）的最短访问顺序
-	std::vector<std::vector<unsigned int>> pathTo(_totalRoomNumber, std::vector<unsigned int>((1 << _totalRoomNumber), -1));
+	std::deque<std::deque<unsigned int>> pathTo(_totalRoomNumber, std::deque<unsigned int>((1 << _totalRoomNumber), -1));
 
 	// 默认机器人的起始位置（顶点）已被访问过
 	unsigned int roomVisitedState = 1 << _startNode;
@@ -81,8 +81,8 @@ void TSP::generatePath(const Floyd& floyd)
 
 // 递归求解最短路径, 即求解从当前机器人位置及房间访问状态，到终点（所有房间被全部访问）的最小成本及路径
 float TSP::tspRecursive(unsigned int robotPosition, unsigned int& roomVisitedState,
-	std::vector<std::vector<float>>& cost,
-	std::vector<std::vector<unsigned int>>& pathTo,
+	std::deque<std::deque<float>>& cost,
+	std::deque<std::deque<unsigned int>>& pathTo,
 	const Floyd& floyd)
 {
 	// 当所有房间全部被访问过后，返回从当前位置回到起点的成本（cost).

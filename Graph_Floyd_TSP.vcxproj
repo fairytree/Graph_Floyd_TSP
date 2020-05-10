@@ -139,12 +139,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Floyd.cpp" />
+    <ClCompile Include="linkregion.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TSP.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Floyd.h" />
+    <ClInclude Include="linkregion.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="TSP.h" />
   </ItemGroup>
