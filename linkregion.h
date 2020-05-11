@@ -4,13 +4,57 @@
 #include <cstdlib>
 #include<vector>
 #include<string>
-#include "../../wallpaper/wallpaper.h"
-#include "../../AreaDivision/AreaDivision.h"
-#include "../clean/CleanRobot.h"
+#include "opencv.hpp"
+//#include "../../wallpaper/wallpaper.h"
+//#include "../../AreaDivision/AreaDivision.h"
+//#include "../clean/CleanRobot.h"
 //#include "../../mapdivision/MapDivision.h"
 //#include "../../mapdivision/MapDivisionDialog.h"
 
 using namespace std;
+
+// newly added
+typedef struct
+{
+    double X;
+    double Y;
+}mPoint;
+
+// newly added
+typedef struct
+{
+    int LinkRegion;
+    int LinkRegion_1;
+    double LinkEnterAngle;
+    double LinkOutAngle;
+    double LinkEnterAngle_1;
+    double LinkOutAngle_1;
+    double originAngle;
+    bool isRealDoor;
+    cv::Point tl;
+    cv::Point br;
+    cv::Point centrePoint;
+    mPoint worldTL;
+    mPoint worldBR;
+    mPoint worldCentrePoint;
+    void clear()
+    {
+        LinkRegion = -1;
+        LinkRegion_1 = -1;
+        LinkEnterAngle = -1;
+        LinkOutAngle = -1;
+        LinkEnterAngle_1 = -1;
+        LinkOutAngle_1 = -1;
+        originAngle = -1;
+        centrePoint = { -1,-1 };
+        tl = { -1,-1 };
+        br = { -1,-1 };
+        worldTL = { 0,0 };
+        worldBR = { 0,0 };
+        worldCentrePoint = { 0,0 };
+        isRealDoor = false;
+    }
+}DoorInfo;
 
 typedef struct
 {
